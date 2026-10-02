@@ -1,0 +1,10 @@
+{
+  "mlx_metal-0.32.3.dev20260920+7241f12-py3-none-macosx_26_0_arm64.whl": {
+    "sha256": "32616c4c1089d86e33e9a8be39f8e1bb2f601e58e04c01c5c8b31d37bebc22a1",
+    "bytes": 69084314
+  },
+  "mlx-0.32.3.dev20260920+7241f12-cp311-cp311-macosx_26_0_arm64.whl": {
+    "sha256": "81f93bfc15543cb561d0607da7c8543e85d8092e9a877da60323bcc88f866741",
+    "bytes": 655604
+  }
+}

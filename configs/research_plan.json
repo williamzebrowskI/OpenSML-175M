@@ -1,0 +1,44 @@
+{
+  "run_name": "research-002-176m",
+  "status": "configured-not-started",
+  "initialize_from_checkpoint": null,
+  "architecture": {
+    "vocab_size": 32000,
+    "max_seq_len": 2048,
+    "d_model": 768,
+    "n_layers": 24,
+    "n_heads": 12,
+    "n_kv_heads": 4,
+    "mlp_ratio": 4.0,
+    "mlp_multiple_of": 256,
+    "bias": false,
+    "qk_norm": true,
+    "attention_impl": "fast",
+    "loss_dtype": "float32",
+    "ce_impl": "metal",
+    "ffn_impl": "packed-metal"
+  },
+  "tokenizer": {
+    "strategy": "reuse-frozen",
+    "path": "reference/opensml-150m/tokenizer/bytebpe32k_v1"
+  },
+  "corpus": "configs/corpus_20b.json",
+  "token_budget": 20000000000,
+  "hardware": {
+    "framework": "MLX",
+    "platform": "Apple Silicon",
+    "cluster_size": 5,
+    "batches": [
+      4,
+      4,
+      2,
+      2,
+      2
+    ],
+    "grad_accum": 4
+  },
+  "post_training": null,
+  "training_recipe": "configs/pretrain_20b.json",
+  "sample_prompts": "configs/sample_prompts.json",
+  "implemented_parameters": 175611648
+}

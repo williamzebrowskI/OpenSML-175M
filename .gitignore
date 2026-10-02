@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+pretraining/runs/
+pretraining/diagnostics/
+pretraining/build/
+pretraining/data/
+*.safetensors
+*.npz

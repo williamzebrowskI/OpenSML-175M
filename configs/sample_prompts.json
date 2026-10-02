@@ -1,0 +1,11 @@
+{
+  "prompts": [
+    "The library was closed for repairs, so Maya decided to",
+    "Plants need sunlight because",
+    "A useful way to remember a new word is to",
+    "The train arrived late because of heavy snow. When the passengers stepped outside,",
+    "Clean drinking water is important because",
+    "def count_words(text):\n    \"\"\"Return the number of whitespace-separated words.\"\"\"\n    ",
+    "Explain what a Python dictionary is and give a short example.\n"
+  ]
+}

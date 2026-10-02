@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenSML · Playground</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>OpenSML</h1>
+      <div class="checkpoint"><span id="status-dot" class="dot"></span><span id="checkpoint-step">Connecting…</span><button id="refresh" class="icon-button" title="Refresh checkpoint" aria-label="Refresh checkpoint">↻</button></div>
+      <button id="clear" class="secondary-button" title="Start a new conversation">New</button>
+    </header>
+    <section class="model-panel" aria-label="Model selection">
+      <label for="model-select">Model</label>
+      <select id="model-select" disabled><option>Loading models...</option></select>
+      <p id="model-info">Pretrained text completion, not an instruction-tuned chat model.</p>
+    </section>
+    <details class="settings">
+      <summary>Settings</summary>
+      <div class="settings-grid">
+        <label class="field" for="max-tokens"><span>Max tokens</span><input id="max-tokens" type="number" min="1" max="2048" value="64" step="1" title="Up to 2,048 for V2; prompt and output share the context limit"></label>
+        <label class="field" for="temperature"><span>Temperature <output id="temperature-value">0.70</output></span><input id="temperature" type="range" min="0" max="2" step="0.05" value="0.7"></label>
+        <label class="field" for="top-k"><span>Top K</span><input id="top-k" type="number" min="0" max="1000" value="40" step="1" title="0 uses all tokens"></label>
+        <label class="field" for="repetition-penalty"><span>Repetition penalty</span><input id="repetition-penalty" type="number" min="1" max="2" value="1.10" step="0.05" title="1.00 = off. Discourages tokens used in the last 64 generated tokens of this response."></label>
+        <label class="field" for="seed"><span>Seed</span><input id="seed" type="number" min="0" max="4294967295" value="2026" step="1"></label>
+        <div class="settings-footer"><label class="check-field"><input id="use-context" type="checkbox" checked><span>Include previous messages</span></label><button id="reset-settings" class="text-button">Reset</button></div>
+      </div>
+    </details>
+    <section class="instruction-panel" aria-label="Instruction settings">
+      <div class="instruction-heading"><label for="instruction">Prompt prefix (optional)</label><button id="clear-instruction" type="button" class="text-button">Clear</button></div>
+      <textarea id="instruction" rows="2" maxlength="12000" placeholder="Plain text placed before your completion prompt..."></textarea>
+    </section>
+    <section id="conversation" aria-label="Conversation"><div id="messages" role="log" aria-live="off"></div></section>
+    <div class="composer-wrap">
+      <div id="notice" role="status"></div>
+      <form id="composer">
+        <textarea id="prompt" rows="2" maxlength="12000" placeholder="Photosynthesis is the process by which plants use sunlight to" aria-label="Your prompt" title="Enter to send · Shift + Enter for a new line" required></textarea>
+        <div class="composer-footer"><span id="compose-status" role="status"></span><button id="stop" type="button" class="secondary-button" hidden>Stop</button><button id="send" class="primary-button" type="submit" title="Generate" aria-label="Generate">↑</button></div>
+      </form>
+      <div id="prompt-presets" class="prompt-presets" role="group" aria-label="Completion starters"></div>
+    </div>
+  </main>
+</body>
+</html>

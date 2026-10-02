@@ -1,0 +1,8 @@
+# Install the custom MLX wheel pair first: see docs/RUNTIME.md
+numpy==2.4.2
+datasets==4.5.0
+huggingface-hub==1.4.0
+tokenizers==0.22.2
+fastapi==0.128.2
+uvicorn==0.40.0
+pydantic==2.12.5

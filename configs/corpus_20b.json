@@ -1,0 +1,77 @@
+{
+  "name": "research-20b-educational-python-v1",
+  "seed": 7337,
+  "shuffle_buffer": 10000,
+  "min_chars": 200,
+  "max_bytes": 200000,
+  "max_rows_per_source": 50000000,
+  "split_buckets": 10000,
+  "sources": [
+    {
+      "label": "web",
+      "repo": "HuggingFaceTB/smollm-corpus",
+      "config": "fineweb-edu-dedup",
+      "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+      "split": "train",
+      "text_field": "text",
+      "weight": 50,
+      "license": "ODC-BY; preserve underlying source notices"
+    },
+    {
+      "label": "dclm",
+      "repo": "HuggingFaceTB/dclm-edu",
+      "revision": "dbad8ad71224482740cd9c9d353591adbf62fe04",
+      "split": "train",
+      "text_field": "text",
+      "weight": 18,
+      "min_score": {
+        "field": "edu_int_score",
+        "value": 3
+      },
+      "license": "CC-BY-4.0"
+    },
+    {
+      "label": "wiki",
+      "repo": "HuggingFaceFW/finewiki",
+      "config": "en",
+      "revision": "8bd13e72e6a002407649b3e898535f42ceb1aeb9",
+      "split": "train",
+      "text_field": "text",
+      "weight": 13,
+      "license": "CC-BY-SA-4.0 / GFDL"
+    },
+    {
+      "label": "cosmopedia",
+      "repo": "HuggingFaceTB/smollm-corpus",
+      "config": "cosmopedia-v2",
+      "revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+      "split": "train",
+      "text_field": "text",
+      "weight": 9,
+      "format_contains": [
+        "textbook",
+        "tutorial",
+        "blog",
+        "educational"
+      ],
+      "license": "ODC-BY; synthetic content; preserve provenance"
+    },
+    {
+      "label": "python",
+      "repo": "Avelina/python-edu-cleaned",
+      "config": "default",
+      "revision": "3fedf55e02e72dd1fd68963f991f5e91adcb0f8d",
+      "split": "train",
+      "text_field": "text",
+      "weight": 10,
+      "min_score": {
+        "field": "int_score",
+        "value": 4
+      },
+      "upstream_repo": "HuggingFaceTB/smollm-corpus",
+      "upstream_config": "python-edu",
+      "upstream_revision": "3ba9d605774198c5868892d7a8deda78031a781f",
+      "license": "Mirror metadata ODC-BY; original code remains subject to upstream repository licenses and The Stack v2 terms"
+    }
+  ]
+}
