@@ -134,3 +134,17 @@ The initial private GitHub repository contains the implementation, selected reci
 The machine-specific network/correctness receipts are required to launch on the existing cluster and are retained in its workspace. A new cluster must regenerate those receipts and configure its own identities/network; the source snapshot alone is not a ready-configured five-Mac network.
 
 Next updates should record validation milestones, loss curves, completed token counts, actual throughput and resource observations, selected checkpoint hashes, and evaluation protocols/results. The private repositories will remain private until the owner explicitly requests publication. No automatic remote checkpoint upload or report refresh is enabled by this document.
+
+## Resume with Mac 1 batch six
+
+The `[4,4,2,2,2]` run saved a coordinated stop at step 125 / 14,336,000 tokens, checkpoint `step_0000125_cc7960813a39`. The explicit `--change-batches 6 4 2 2 2` transition preserves model weights, FP32 optimizer state, stream cursors, validation identity and the token-based schedule. Subsequent updates process 131,072 tokens; the original updates processed 114,688. Step times and memory at the increased batch size have not yet been measured.
+
+```bash
+.venv/bin/python pretraining/scripts/launch_research.py \
+  --network pretraining/diagnostics/m5_migration_20260922/network_20261002_142104 \
+  --output pretraining/runs/research_20b_176m_b44222 \
+  --resume pretraining/runs/research_20b_176m_b44222/step_0000125_cc7960813a39 \
+  --change-batches 6 4 2 2 2 --clear-stop --run
+```
+
+This command targets the saved step-125 checkpoint. After later stops, select the newer checkpoint from `latest.json` rather than replaying this parent. Resume compatibility accepts only this reviewed code upgrade and a batch-only transition; unrelated schedule, architecture, data or tokenizer changes remain rejected.

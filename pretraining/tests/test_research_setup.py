@@ -68,7 +68,7 @@ class ResearchSetupTests(unittest.TestCase):
         self.assertAlmostEqual(learning_rate(16_000_000_000,recipe),3e-4)
         self.assertAlmostEqual(learning_rate(20_000_000_000,recipe),3e-5)
         with patch('builtins.print'), patch('subprocess.run',side_effect=AssertionError('no subprocess')):
-            main([])
+            main(['--output',str(ROOT/'runs/test-plan-only')])
         self.assertNotIn('prompts',recipe)
 
     def test_frozen_tokenizer_reuse_requires_explicit_policy_and_tracks_corpus(self):

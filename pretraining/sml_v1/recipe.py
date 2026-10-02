@@ -3,6 +3,9 @@ import math
 
 
 def validate(recipe):
+    if "batch_transition" in recipe:
+        from .batch_transition import validate_transition
+        validate_transition(recipe)
     if 'stage_b_transition' in recipe:
         from .stage_b import validate_transition
         validate_transition(recipe)

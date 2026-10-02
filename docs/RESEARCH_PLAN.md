@@ -100,3 +100,17 @@ To start the server again after it stops or after reboot:
 ```
 
 For the optional baseline run, pass `--run-dir pretraining/runs/research_20b_baseline/playground`. The run’s best selection is always its own fixed held-out validation loss.
+
+## Resume with Mac 1 batch six
+
+The `[4,4,2,2,2]` run saved a coordinated stop at step 125 / 14,336,000 tokens, checkpoint `step_0000125_cc7960813a39`. The explicit `--change-batches 6 4 2 2 2` transition preserves model weights, FP32 optimizer state, stream cursors, validation identity and the token-based schedule. Subsequent updates process 131,072 tokens; the original updates processed 114,688. Step times and memory at the increased batch size have not yet been measured.
+
+```bash
+.venv/bin/python pretraining/scripts/launch_research.py \
+  --network pretraining/diagnostics/m5_migration_20260922/network_20261002_142104 \
+  --output pretraining/runs/research_20b_176m_b44222 \
+  --resume pretraining/runs/research_20b_176m_b44222/step_0000125_cc7960813a39 \
+  --change-batches 6 4 2 2 2 --clear-stop --run
+```
+
+This command targets the saved step-125 checkpoint. After later stops, select the newer checkpoint from `latest.json` rather than replaying this parent. Resume compatibility accepts only this reviewed code upgrade and a batch-only transition; unrelated schedule, architecture, data or tokenizer changes remain rejected.

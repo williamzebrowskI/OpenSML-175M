@@ -1,0 +1,77 @@
+{
+  "batches": [
+    6,
+    4,
+    2,
+    2,
+    2
+  ],
+  "betas": [
+    0.9,
+    0.95
+  ],
+  "data_mode": "hf_stream",
+  "decay_start_fraction": 0.8,
+  "eps": 1e-08,
+  "eval_batch_size": 2,
+  "eval_batches_per_source": 32,
+  "eval_every_tokens": 50000000,
+  "grad_accum": 4,
+  "grad_clip": 1.0,
+  "keep_checkpoints": 3,
+  "log_every": 10,
+  "min_lr_ratio": 0.1,
+  "model": {
+    "attention_impl": "fast",
+    "bias": false,
+    "ce_impl": "metal",
+    "d_model": 768,
+    "ffn_impl": "packed-metal",
+    "loss_dtype": "float32",
+    "max_seq_len": 2048,
+    "mlp_multiple_of": 256,
+    "mlp_ratio": 4.0,
+    "n_heads": 12,
+    "n_kv_heads": 4,
+    "n_layers": 24,
+    "qk_norm": true,
+    "vocab_size": 32000
+  },
+  "name": "research-20b-python-176m",
+  "peak_lr": 0.0003,
+  "playground_publish_best": true,
+  "reserve_gib": 16,
+  "sample_every_tokens": 50000000,
+  "sample_prompts_file": "sample_prompts.json",
+  "save_every_tokens": 100000000,
+  "seed": 7337,
+  "stream": {
+    "dedup_window": 100000,
+    "prefetch_batches": 4,
+    "read_attempts": 5,
+    "shuffle_buffer": 256,
+    "tokenizer_corpus_policy": "reuse-frozen"
+  },
+  "target_tokens": 20000000000,
+  "warmup_fraction": 0.01,
+  "weight_decay": 0.1,
+  "batch_transition": {
+    "format": "sml-research-batch-transition-v1",
+    "parent_step": 125,
+    "start_tokens": 14336000,
+    "parent_contract": {
+      "code": "58f75d5d92576c268370e8f3dbb59f7cbc5ef58bcd1cf247a7cf6008c47e7e3c",
+      "data": "114cafddb71ce092c8ede1cdddcefe033f30bbab1c093b8593a9e23e36014a76",
+      "recipe": "0a2de034cbafd3bbc101d6ac151602d2ea4889b51deaf9bf9fc49e2c827a93da",
+      "tokenizer": "1194292c6d906ac19e6f01c6ad2b42825143fad426a22aa8856d903776701ecb"
+    },
+    "parent_replica_hash": "6a63305e36520f376da3db369a11350c959485ed673f410c017bd6a79190ce5f",
+    "parent_batches": [
+      4,
+      4,
+      2,
+      2,
+      2
+    ]
+  }
+}

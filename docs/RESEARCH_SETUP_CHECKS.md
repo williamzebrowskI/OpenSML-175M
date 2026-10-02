@@ -49,3 +49,5 @@ The actual MLX model instantiated on CPU has exactly 175,611,648 parameters. The
 ## Revised five-Mac batches
 
 The selected recipe now uses `[4, 4, 2, 2, 2]` in ring order (Macs 1, 2, 3, 5, 4), with accumulation 4 and context 2,048: 114,688 tokens per optimizer update. The previous 175.61M run stopped at step 13 and is preserved separately. The revised default output is `pretraining/runs/research_20b_176m_b44222/`; its playground follows this new run.
+
+The batch-only resume transition has four offline contract tests plus six setup tests passing. The real stopped bundle passed byte/hash and cursor/token verification. The updated worker modules passed five-rank collectives, weighted gradients and checkpoint round trips in `collectives_20261002_162954`. This is not a measured batch-six throughput result.

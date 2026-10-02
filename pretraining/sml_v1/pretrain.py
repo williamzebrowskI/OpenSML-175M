@@ -378,7 +378,7 @@ def run(resources):
         # Exclude validation collection/baseline time from training throughput.
         started = last_print_time = time.monotonic()
 
-    if not args.resume or transition in ('explicit-validation-scheduler-transition', 'explicit-five-rank-transition'):
+    if not args.resume or transition in ('explicit-validation-scheduler-transition', 'explicit-five-rank-transition', 'explicit-batch-transition'):
         save()
     if transition in ('explicit-lr-trial-transition', 'explicit-stage-b-transition'):
         # Keep the evaluated parent as best if this experiment never improves it.

@@ -6,6 +6,7 @@ from pathlib import Path
 from .common import file_sha256, fingerprint
 from .recipe import learning_rate, validate
 
+PRE_BATCH_CODE = '58f75d5d92576c268370e8f3dbb59f7cbc5ef58bcd1cf247a7cf6008c47e7e3c'
 PILOT_CODE = '3af3f1a2405b7c447ee79cd1e9504ea9558d0f6636d7f9379f15cd216a7e4d58'
 PRE_GATHER_CODE = 'fdaa5eceee48990f8e20adef266d9357348288e83f4c287f35256d5e31690d80'
 PRE_PLATEAU_CODE = 'b1c40eb3a2639560d9ccec963d5295914bdbff5c0e0b8275ad6fd57b5482862f'
@@ -15,11 +16,11 @@ PRE_DATA_REVIEW_CODE = '510c74f556a9a9505581d6ec800abb9f96ef8747c9fb3aae0a9194b2
 PRE_LR_TRIAL_CODE = 'c20eebd79580c0d2c5b93b035750830422955d7c7022480ea67b83b616e40a54'
 PRE_STAGE_B_CODE = '1659589be418196d424adf912d28c4b0f14ed210a16f367cf0b590f226d026ba'
 # Pins the reviewed upgrade, excluding this module to avoid a self-hash cycle.
-UPGRADE_MODULES = 'e991163cbab6b69afeef1a250ac555f311da1aa537a8a522f02819ed074d2c13'
+UPGRADE_MODULES = '4c3b2c3fcf7367e949f74bb1ad5f4460104769181980cb1ce5437e1b85357432'
 
 
 def reviewed_upgrade(previous, current):
-    if previous not in (PILOT_CODE, PRE_GATHER_CODE, PRE_PLATEAU_CODE, PRE_FIVE_RANK_CODE, PRE_LR_FLOOR_CODE, PRE_DATA_REVIEW_CODE, PRE_LR_TRIAL_CODE, PRE_STAGE_B_CODE):
+    if previous not in (PRE_BATCH_CODE, PILOT_CODE, PRE_GATHER_CODE, PRE_PLATEAU_CODE, PRE_FIVE_RANK_CODE, PRE_LR_FLOOR_CODE, PRE_DATA_REVIEW_CODE, PRE_LR_TRIAL_CODE, PRE_STAGE_B_CODE):
         return False
     hashes = {p.name: file_sha256(p) for p in Path(__file__).parent.glob('*.py')}
     return (fingerprint(hashes) == current and
@@ -77,6 +78,11 @@ def check_resume(metadata, contract, recipe, manifest=None):
         return 'explicit-data-review-transition'
     if previous.get('data') != contract.get('data'):
         raise ValueError('Resume rejected: data or tokenizer changed')
+    if 'batch_transition' in recipe and 'batch_transition' not in metadata['recipe']:
+        from .batch_transition import change_batches
+        if recipe != change_batches(metadata, recipe['batches']):
+            raise ValueError('Resume rejected: batch transition changed unrelated settings')
+        return 'explicit-batch-transition'
     if 'lr_trial_transition' in recipe and 'lr_trial_transition' not in metadata['recipe']:
         from .lr_trial import trial_recipe
         t = recipe['lr_trial_transition']

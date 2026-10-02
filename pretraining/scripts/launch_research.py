@@ -24,6 +24,7 @@ def arguments(argv=None):
     p.add_argument('--output', type=Path, default=ROOT/'runs/research_20b_176m_b44222')
     p.add_argument('--network', type=Path, help='Verified current five-Mac network plan')
     p.add_argument('--resume', type=Path, help='Explicit checkpoint from this output; otherwise fresh')
+    p.add_argument('--change-batches', type=int, nargs=5, help='Explicit resume-only five-rank microbatch change')
     p.add_argument('--clear-stop', action='store_true')
     p.add_argument('--stop-after-steps', type=int, default=0,
                    help='Bounded smoke/pilot run; 0 means the full token target')
@@ -40,6 +41,14 @@ def main(argv=None):
     a = arguments(argv)
     config, output = a.config.resolve(), a.output.resolve()
     recipe = validate(read_json(config))
+    if a.change_batches:
+        if not a.resume:
+            raise ValueError('--change-batches requires an explicit resume checkpoint')
+        from sml_v1.checkpoint_metadata import verify_bundle_metadata
+        from sml_v1.batch_transition import change_batches
+        recipe = change_batches(verify_bundle_metadata(a.resume), a.change_batches)
+    if 'batch_transition' in recipe and not a.resume:
+        raise ValueError('Batch transition requires explicit resume')
     if len(recipe['batches']) != 5 or recipe.get('data_mode') != 'hf_stream':
         raise ValueError('Research launcher requires five ranks and HF streaming')
     if any(k in recipe for k in ('continuation', 'stage_b_transition', 'topology_transition',
