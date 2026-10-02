@@ -1,8 +1,8 @@
-# OpenSML-150M-V2
+# OpenSML-175M
 
 An ongoing small language model pretraining experiment on a five-Mac Apple Silicon cluster using MLX.
 
-The project name is **OpenSML-150M-V2**; the selected model has **175,611,648 parameters (175.61M)**: 24 layers, width 768, grouped-query attention, a frozen 32K OpenSML tokenizer, and 2,048-token context. Training starts from random weights and targets 20B processed tokens with 90% educational prose and 10% Python.
+The project name is **OpenSML-175M**; the selected model has **175,611,648 parameters (175.61M)**: 24 layers, width 768, grouped-query attention, a frozen 32K OpenSML tokenizer, and 2,048-token context. Training starts from random weights and targets 20B processed tokens with 90% educational prose and 10% Python.
 
 The selected run is underway. No final weights or benchmark results have been published for this model.
 
@@ -10,7 +10,7 @@ The selected run is underway. No final weights or benchmark results have been pu
 - [Training recipe](configs/pretrain_20b.json)
 - [Pinned dataset mixture](configs/corpus_20b.json)
 - [Cluster launch and editable prompts](docs/RESEARCH_PLAN.md)
-- [Private model card](https://huggingface.co/wzebrowski/OpenSML-150M-V2)
+- [Private model card](https://huggingface.co/wzebrowski/OpenSML-175M)
 - [Five-Mac activity monitor](pretraining/dashboard/README.md)
 
 ## Setup

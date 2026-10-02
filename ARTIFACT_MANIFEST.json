@@ -1,7 +1,7 @@
 {
   "source_repository": "williamzebrowskI/sml-mlx",
   "source_commit": "c411f6c739542192bf81fa9df8e855f5958a268d",
-  "project_name": "OpenSML-150M-V2",
+  "project_name": "OpenSML-175M",
   "parameters": 175611648,
   "includes_trained_weights": false,
   "files": {
@@ -14,8 +14,8 @@
       "bytes": 11358
     },
     "README.md": {
-      "sha256": "cd1186c4981a8dd8482260d0d2c96aa53cdc6924cc153a6771aed83c1c0da656",
-      "bytes": 2440
+      "sha256": "b7633755864de7b8fc47bdb40dfbc05ed9a29fdba6389f030d725383380e5693",
+      "bytes": 2431
     },
     "SOURCE_NOTICE.md": {
       "sha256": "e3e67eb501a86f3fd945a3b2b5a8a0a8f09ed1c7cb1bb987b528c43bbaba0e7d",
@@ -66,8 +66,8 @@
       "bytes": 1463
     },
     "docs/TECHNICAL_REPORT.md": {
-      "sha256": "b76b0e3290b6244e15ca2d9b4ac68450d9805c944a58e71318f24ead4ffba7a4",
-      "bytes": 12769
+      "sha256": "3117e4b67d7bff44acae6904b73a82c07b44ae3869f3bc4e8a37258c47d9db45",
+      "bytes": 12710
     },
     "docs/runtime_wheels.json": {
       "sha256": "80b33c9a2da5ec2e1ecadd00c0838dd624aed52a9d68243fa57d18d6bd8883c8",

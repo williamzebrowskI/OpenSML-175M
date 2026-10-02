@@ -1,13 +1,13 @@
-# OpenSML-150M-V2 — Initial Technical Report
+# OpenSML-175M — Initial Technical Report
 
 **Author:** William Zebrowski  
 **Status:** Ongoing pretraining experiment; initial report dated October 2, 2026.  
-**GitHub:** https://github.com/williamzebrowskI/OpenSML-150M-V2  
-**Model repository:** https://huggingface.co/wzebrowski/OpenSML-150M-V2
+**GitHub:** https://github.com/williamzebrowskI/OpenSML-175M  
+**Model repository:** https://huggingface.co/wzebrowski/OpenSML-175M
 
 ## 1. Scope and objectives
 
-OpenSML-150M-V2 is the project name. The selected architecture has **175,611,648 parameters (175.61M)**, verified by instantiating the implemented MLX model on CPU. It is pretrained from random initialization on a five-Mac cluster with a target of **20 billion processed training token positions**. It reuses the frozen 32,000-token byte-level BPE tokenizer trained for OpenSML-150M; it does not initialize from that model's weights.
+OpenSML-175M has **175,611,648 parameters (175.61M)**, verified by instantiating the implemented MLX model on CPU. It is pretrained from random initialization on a five-Mac cluster with a target of **20 billion processed training token positions**. It reuses the frozen 32,000-token byte-level BPE tokenizer trained for OpenSML-150M; it does not initialize from that model's weights.
 
 The experiment tests whether additional model depth, a larger token budget and Python exposure improve held-out prediction and downstream capabilities relative to the previous 150.44M base. These changes occur together, so a final comparison cannot isolate the contribution of any individual change. Better reasoning or benchmark performance is an objective, not an established result.
 
