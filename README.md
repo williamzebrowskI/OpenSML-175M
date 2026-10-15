@@ -36,3 +36,8 @@ PYTHONPATH=pretraining:pretraining/scripts .venv/bin/python -m unittest discover
 ```
 
 See the technical report for validation intervals, checkpoint retention, current evidence and limitations. Model weights and large training records belong in the model repository when selected and uploaded; this initial source repository contains neither.
+
+
+## JSONLite descendant
+
+The main [OpenSML-JSONLite-175M-Instruct](https://huggingface.co/OpenSML/OpenSML-JSONLite-175M) now includes an additional focused extraction SFT after its native JSON foundation. It generates the complete JSON object directly. [Training and matched evaluation update](docs/JSONLITE_DESCENDANT.md). This update does not alter the pretrained base weights or base benchmark claims.
