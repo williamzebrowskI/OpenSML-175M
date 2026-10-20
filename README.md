@@ -40,4 +40,6 @@ See the technical report for validation intervals, checkpoint retention, current
 
 ## JSONLite descendant
 
+The JSONLite descendant is intended for short English extraction into a flat object with string, nullable-string or string-array fields. It can omit, merge or misassign values even when its JSON is valid. Nested/record schemas, numeric/Boolean outputs, optional-property logic and advanced schema rules are outside that released runner's verified scope. Its reported scores are specific to the documented evaluation panels. See the descendant model card's **Intended use and limitations** section before choosing it for an application; these statements do not describe new capabilities of the pretrained base.
+
 The main [OpenSML-JSONLite-175M-Instruct](https://huggingface.co/OpenSML/OpenSML-JSONLite-175M) includes the latest joint source/schema/JSON extraction SFT. Current descendant complete-request correctness is 88.02% on the observed 1,444-request panel. [Training and evaluation update](docs/JSONLITE_DESCENDANT.md). The pretrained base weights and base benchmark claims are unchanged.
